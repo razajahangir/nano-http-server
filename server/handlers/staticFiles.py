@@ -1,5 +1,7 @@
-def index(request):
-    with open("static/index.html", "r") as file:
+import os
+
+def loadResource(reqFile):
+    with open(reqFile, "r") as file:
         content = file.read()
     return {
         "status_code": 200,
@@ -7,13 +9,11 @@ def index(request):
         "body": content,
     }
 
-def style(request):
-    with open("static/css/style.css", "r") as file:
-        content = file.read()
-    return {
-        "status_code": 200,
-        "headers": {"Content-Type": "text/css; charset=UTF-8"},
-        "body": content,
-    }
+def fileExists(filePath):
+    publicDir  = '/var/www' # Will be fetched from config file later
+    filePath = publicDir + filePath
+    if os.path.isfile(filePath):
+        return filePath
+    else:
+        return False
 
-# Add more static file handlers as needed

@@ -10,6 +10,7 @@ nanoSocket = nanoSocket(HOST, PORT)
 nanoSocket.bind()
 nanoSocket.listen()
 
+
 while True:
 
     # Accept an incoming connection 
@@ -21,15 +22,15 @@ while True:
 
     # Parse the request
     req = requestParser.parseRequest(reqBytes)
-
-    # Route request to appropriate handler
+    
+    # # Route request to appropriate handler
     res = routeRequest(req)
 
     # Build the HTTP response
     http_res = buildResponse(res)
 
-    # Send the HTTP response
+    # # # # Send the HTTP response
     clientSocket.sendall(http_res)
 
-    # Close the connection
+    # # # # Close the connection
     clientSocket.close()
